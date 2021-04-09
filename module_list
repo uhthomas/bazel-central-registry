@@ -1,0 +1,5 @@
+bazel_skylib
+bazel_stardoc
+rules_pkg
+rules_python
+zlib

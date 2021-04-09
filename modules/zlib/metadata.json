@@ -1,0 +1,6 @@
+{
+  "maintainer": "A warm-hearted Bazel contributor",
+  "maintainer_email": "goodman@gmail.com",
+  "homepage": "https://zlib.net",
+  "versions": ["1.2.11"]
+}

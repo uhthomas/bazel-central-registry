@@ -1,0 +1,10 @@
+platforms:
+  ubuntu1604:
+    build_targets:
+      - //:zlib
+  macos:
+    build_targets:
+      - //:zlib
+  windows:
+    build_targets:
+      - //:zlib

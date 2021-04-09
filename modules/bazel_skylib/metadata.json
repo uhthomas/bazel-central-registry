@@ -1,0 +1,6 @@
+{
+  "maintainer": "The Bazel team",
+  "maintainer_email": "bazel-dev@googlegroups.com",
+  "homepage": "https://github.com/bazelbuild/bazel-skylib",
+  "versions": ["1.0.3"]
+}
