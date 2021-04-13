@@ -1,0 +1,9 @@
+{
+    "integrity": "sha256-e8c2751ddc70fed9dc6f999acd92e232d5846f009ee1674f8aee81f19b2b915a",
+    "patch_args": [],
+    "patches": [
+        "add_build_file.patch"
+    ],
+    "strip_prefix": "c-ares-e982924acee7f7313b4baa4ee5ec000c5e373c30",
+    "url": "https://github.com/c-ares/c-ares/archive/e982924acee7f7313b4baa4ee5ec000c5e373c30.tar.gz"
+}

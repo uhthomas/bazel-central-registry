@@ -1,0 +1,13 @@
+{
+    "homepage": "https://github.com/c-ares/c-ares",
+    "maintainers": [
+        {
+            "email": "bazel-dev@googlegroups.com",
+            "name": "The Bazel Team"
+        }
+    ],
+    "versions": [
+        "1.15.0-pre"
+    ],
+    "yanked_versions": {}
+}
