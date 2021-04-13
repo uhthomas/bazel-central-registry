@@ -1,0 +1,13 @@
+{
+    "homepage": "https://github.com/protocolbuffers/protobuf",
+    "maintainers": [
+        {
+            "email": "bazel-dev@googlegroups.com",
+            "name": "The Bazel Team"
+        }
+    ],
+    "versions": [
+        "3.13.0"
+    ],
+    "yanked_versions": {}
+}

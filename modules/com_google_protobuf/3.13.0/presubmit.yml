@@ -1,0 +1,22 @@
+platforms:
+  linux:
+    build_targets:
+    - //:protobuf
+    - //:protobuf_lite
+    - //:protoc
+    test_targets:
+    - //:protobuf_test
+  macos:
+    build_targets:
+    - //:protobuf
+    - //:protobuf_lite
+    - //:protoc
+    test_targets:
+    - //:protobuf_test
+  windows:
+    build_targets:
+    - //:protobuf
+    - //:protobuf_lite
+    - //:protoc
+    test_targets:
+    - //:protobuf_test
