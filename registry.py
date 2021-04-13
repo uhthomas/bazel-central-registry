@@ -223,18 +223,3 @@ module(
         with metadata_path.open("w") as f:
             json.dump(metadata, f, indent=4, sort_keys=True)
     
-
-if __name__ == "__main__":
-    client = RegistryClient(".")
-    
-    client.delete("zlib", "1.2.12")
-    
-    print(client.contains("zlib", "1.2.12"))
-
-    
-    print(client.contains("zlib", "1.2.12"))
-    
-    # client.delete("zlib", "1.2.12")
-    
-    print(client.contains("zlib", "1.2.12"))
-    # client.init_module("blabla", [{"name": "pcloudy", "email": "p@z"}], "http://foo.bar")
