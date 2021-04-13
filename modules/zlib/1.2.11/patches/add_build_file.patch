@@ -1,47 +1,17 @@
-Author: Yun Peng <pcloudy@google.com>
-Date:   Fri Sep 25 10:34:13 2020 +0200
-
-    Add zlib.BUILD
-
-diff --git a/zlib.BUILD b/zlib.BUILD
-new file mode 100644
-index 0000000000..95ae7c5a89
 --- /dev/null
-+++ b/zlib.BUILD
-@@ -0,0 +1,36 @@
++++ BUILD
+@@ -0,0 +1,14 @@
++licenses(["notice"])  #  BSD/MIT-like license
++
 +cc_library(
 +    name = "zlib",
-+    srcs = [
-+        "adler32.c",
-+        "compress.c",
-+        "crc32.c",
-+        "deflate.c",
-+        "infback.c",
-+        "inffast.c",
-+        "inflate.c",
-+        "inftrees.c",
-+        "trees.c",
-+        "uncompr.c",
-+        "zutil.c",
++    srcs = glob(["*.c"]),
++    hdrs = glob(["*.h"]),
++    # Use -Dverbose=-1 to turn off zlib's trace logging. (#3280)
++    copts = [
++        "-w",
++        "-Dverbose=-1",
 +    ],
-+    hdrs = [
-+        "crc32.h",
-+        "deflate.h",
-+        "gzguts.h",
-+        "inffast.h",
-+        "inffixed.h",
-+        "inflate.h",
-+        "inftrees.h",
-+        "trees.h",
-+        "zconf.h",
-+        "zlib.h",
-+        "zutil.h",
-+    ],
-+    includes = [
-+        ".",
-+    ],
-+    linkstatic = 1,
-+    visibility = [
-+        "//visibility:public",
-+    ],
++    includes = ["."],
++    visibility = ["//visibility:public"],
 +)
