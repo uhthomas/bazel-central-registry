@@ -119,6 +119,8 @@ module(
         """
         p = self.root.joinpath("modules", module_name)
         p.mkdir()
+
+        # Create metadata.json file
         metadata = {
           "maintainers": maintainers,
           "homepage": homepage,
@@ -128,6 +130,7 @@ module(
         with p.joinpath("metadata.json").open("w") as f:
             json.dump(metadata, f, indent=4, sort_keys=True)
             
+        # Add new module to module_list file
         module_list = self.root.joinpath("module_list")
         modules = module_list.open().readlines()
         modules.append(module_name + "\n")
