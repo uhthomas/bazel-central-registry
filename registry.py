@@ -201,7 +201,7 @@ module(
         # Turn build file into a patch
         if module.build_file:
             build_file_content = Path(module.build_file).open().readlines()
-            build_file = "a/BUILD" if "-p1" in module.patch_args else "BUILD"
+            build_file = "a/BUILD.bazel" if "-p1" in module.patch_args else "BUILD.bazel"
             patch_content = difflib.unified_diff([], build_file_content, "/dev/null", build_file)
             patch_name = "add_build_file.patch"
             source["patches"].append(patch_name)
