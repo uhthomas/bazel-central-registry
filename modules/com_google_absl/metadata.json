@@ -1,0 +1,13 @@
+{
+    "homepage": "https://github.com/abseil/abseil-cpp",
+    "maintainers": [
+        {
+            "email": "bazel-dev@googlegroups.com",
+            "name": "The Bazel Team"
+        }
+    ],
+    "versions": [
+        "20200225-pre"
+    ],
+    "yanked_versions": {}
+}

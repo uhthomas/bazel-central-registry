@@ -1,0 +1,11 @@
+{
+    "integrity": "sha256-58eaee5c0f1bd0b92ebe1fa0606ec8f14798500620e7444726afcaf65041cb63",
+    "patch_args": [
+        "-p1"
+    ],
+    "patches": [
+        "grpc_1.33.1.patch"
+    ],
+    "strip_prefix": "grpc-1.33.1",
+    "url": "https://github.com/grpc/grpc/archive/v1.33.1.tar.gz"
+}

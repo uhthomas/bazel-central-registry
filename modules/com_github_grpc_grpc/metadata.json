@@ -1,0 +1,11 @@
+{
+    "homepage": "https://github.com/grpc/grpc",
+    "maintainers": [
+        {
+            "email": "bazel-dev@googlegroups.com",
+            "name": "The Bazel Team"
+        }
+    ],
+    "versions": ["1.33.1"],
+    "yanked_versions": {}
+}

@@ -1,5 +1,7 @@
 bazel_skylib
 com_github_cares_cares
+com_github_grpc_grpc
+com_google_absl
 com_google_protobuf
 platforms
 upb
