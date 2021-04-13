@@ -1,10 +1,16 @@
 platforms:
-  ubuntu1604:
+  linux:
     build_targets:
-      - //:zlib
+    - '...'
+    test_targets:
+    - '...'
   macos:
     build_targets:
-      - //:zlib
+    - '...'
+    test_targets:
+    - '...'
   windows:
     build_targets:
-      - //:zlib
+    - '...'
+    test_targets:
+    - '...'

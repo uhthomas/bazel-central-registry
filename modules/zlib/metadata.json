@@ -1,6 +1,13 @@
 {
-  "maintainer": "A warm-hearted Bazel contributor",
-  "maintainer_email": "goodman@gmail.com",
-  "homepage": "https://zlib.net",
-  "versions": ["1.2.11"]
+    "homepage": "https://zlib.net",
+    "maintainers": [
+        {
+            "email": "bazel-dev@googlegroups.com",
+            "name": "The Bazel Team"
+        }
+    ],
+    "versions": [
+        "1.2.11"
+    ],
+    "yanked_versions": {}
 }
