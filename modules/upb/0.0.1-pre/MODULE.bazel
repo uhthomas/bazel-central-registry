@@ -1,0 +1,6 @@
+module(
+    name = "upb",
+    version = "0.0.1-pre",
+    compatibility_level = "1",
+)
+

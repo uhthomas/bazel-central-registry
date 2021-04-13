@@ -1,4 +1,5 @@
 bazel_skylib
 com_google_protobuf
 platforms
+upb
 zlib
