@@ -57,27 +57,29 @@ def fromUserInput():
     integrity = input("Please enter the integrity value of the archive: ")
     strip_prefix = input("Please enter the strip_prefix value of the archive [default None]: ") or None
     module.set_source(url, integrity, strip_prefix)
-    
-    ans = yes_or_no("Do you want to add patch files?", False)
-    if ans:
-        patches = input("Please input patch file paths, separated by `,`: ")
+
+    if yes_or_no("Do you want to add patch files?", False):
+        patches = input("Please enter patch file paths, separated by `,`: ")
         for patch in patches.strip().split(","):
             module.add_patch(patch.strip())
+        patch_args = input("Please enter arguments for the patch command, separated by `,` [Default -p1]: ") or "-p1"
+        module.set_patch_args(patch_args.strip().split(","))
 
-    ans = yes_or_no("Do you want to specify a MODULE.bazel file?", False)
-    if ans:
+    if yes_or_no("Do you want to add a BUILD file?", False):
+        build_file = input("Please enter the path of the BUILD file to be added: ")
+        module.set_build_file(build_file.strip())
+
+    if yes_or_no("Do you want to specify a MODULE.bazel file?", False):
         path = input("Please enter the MODULE.bazel file path: ").strip()
         module.set_module_dot_bazel(path)
     else:
-        ans = yes_or_no("Do you want to specify dependencies for this module?", False)
-        if ans:
-            deps = input("Please input dependencies in the form of <name>:<version>, separated by `,`: ")
+        if yes_or_no("Do you want to specify dependencies for this module?", False):
+            deps = input("Please enter dependencies in the form of <name>:<version>, separated by `,`: ")
             for dep in deps.strip().split(","):
                 name, version = dep.split(":")
                 module.add_dep(name, version)
-    
-    ans = yes_or_no("Do you wan to specify a presubmit.yml file", False)
-    if ans:
+
+    if yes_or_no("Do you want to specify a presubmit.yml file", False):
         path = input("Please enter the presubmit.yml file path: ").strip()
         module.set_presubmit_yml(path)
     else:
@@ -106,8 +108,7 @@ def get_maintainers_from_input():
         if username:
             maintainer["github"] = username
         maintainers.append(maintainer)
-        ans = yes_or_no("Do you want to add another maintainer?", True)
-        if not ans:
+        if not yes_or_no("Do you want to add another maintainer?", False):
             break
     return maintainers
          

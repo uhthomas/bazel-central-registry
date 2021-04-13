@@ -15,69 +15,80 @@
 # limitations under the License.
 
 from pathlib import Path
+import difflib
 import json
 import shutil
 import yaml
 
 class Module(object):
-    
-    def __init__(self, name = None, version = None, compatibility_level = 1):
+
+    def __init__(self, name=None, version=None, compatibility_level=1):
         self.name = name
         self.version = version
         self.compatibility_level = compatibility_level
         self.module_dot_bazel = None
         self.deps = []
         self.patches = []
+        self.patch_args = []
+        self.build_file = None
         self.presubmit_yml = None
         self.build_targets = []
         self.test_targets = []
-        
+
     def add_dep(self, module_name, version):
         self.deps.append((module_name, version))
         return self
-    
+
     def set_module_dot_bazel(self, module_dot_bazel):
         self.module_dot_bazel = module_dot_bazel
-        
-    def set_source(self, url, integrity, strip_prefix = None):
+
+    def set_source(self, url, integrity, strip_prefix=None):
         self.url = url
         self.integrity = integrity
         self.strip_prefix = strip_prefix
         return self
-    
+
     def add_patch(self, patch_file):
         self.patches.append(patch_file)
         return self
-    
+
+    def set_patch_args(self, patch_args):
+        self.patch_args = patch_args
+        return self
+
+    def set_build_file(self, build_file):
+        self.build_file = build_file
+        return self
+
     def set_presubmit_yml(self, presubmit_yml):
         self.presubmit_yml = presubmit_yml
         return self
-        
+
     def add_build_target(self, target):
         self.build_targets.append(target)
         return self
-        
+
     def add_test_targets(self, target):
         self.test_targets.append(target)
         return self
-    
+
     def dump(self, file):
         with open(file, "w") as f:
             json.dump(self.__dict__, f, indent=4, sort_keys=True)
-            
+
     def from_json(self, file):
         with open(file) as f:
             self.__dict__ = json.load(f)
-        
-    
+
+
 class RegistryModifyException(Exception):
     """
     Raised whenever something goes wrong with modifying the registry.
     """
     pass
 
+
 class RegistryClient(object):
-    
     _MODULE_BAZEL = """
 module(
     name = "{0}",
@@ -87,11 +98,11 @@ module(
 
 {3}
 """.strip()
-    
+
     def __init__(self, root):
         self.root = Path(root)
-    
-    def contains(self, module_name, version = None):
+
+    def contains(self, module_name, version=None):
         """
         Check if the registry contains a module or a specific version of a 
         module
@@ -100,7 +111,7 @@ module(
         if version:
             p = p.joinpath(version)
         return p.is_dir()
-    
+
     def init_module(self, module_name, maintainers, homepage):
         """
         Initialize a module, create the directory and metadata.json file.
@@ -122,21 +133,21 @@ module(
 
         # Create metadata.json file
         metadata = {
-          "maintainers": maintainers,
-          "homepage": homepage,
-          "versions": [],
-          "yanked_versions": {},
+            "maintainers": maintainers,
+            "homepage": homepage,
+            "versions": [],
+            "yanked_versions": {},
         }
         with p.joinpath("metadata.json").open("w") as f:
             json.dump(metadata, f, indent=4, sort_keys=True)
-            
+
         # Add new module to module_list file
         module_list = self.root.joinpath("module_list")
         modules = module_list.open().readlines()
         modules.append(module_name + "\n")
         modules.sort()
         module_list.open("w").writelines(modules)
-    
+
     def add(self, module):
         """
         Add a new module version, the module must be already initialized
@@ -150,69 +161,83 @@ module(
         if self.contains(module.name, module.version):
             raise RegistryModifyException(
                 f"Version {module.version} for module {module.name} already exists.")
-        
+
         p = self.root.joinpath("modules", module.name, module.version)
         p.mkdir()
-        
+
         # Create MODULE.bazel
         module_dot_bazel = p.joinpath("MODULE.bazel")
         if module.module_dot_bazel:
             shutil.copy(module.module_dot_bazel, module_dot_bazel)
         else:
             deps = "\n".join(
-                f"bazel_dep(name = \"{name}\", version = \"{version}\")" 
+                f"bazel_dep(name = \"{name}\", version = \"{version}\")"
                 for name, version in module.deps)
             with module_dot_bazel.open("w") as f:
                 f.write(self._MODULE_BAZEL.format(
-                    module.name, module.version, 
+                    module.name, module.version,
                     module.compatibility_level, deps))
-                
-        # Create source.json & copy patch files
+
+        # Create source.json & place patch files
         source = {
-          "url": module.url,
-          "integrity": module.integrity,
+            "url": module.url,
+            "integrity": module.integrity,
         }
         if module.strip_prefix:
             source["strip_prefix"] = module.strip_prefix
-        if module.patches:
-            patch_dir = p.joinpath("patches")
+
+        patch_dir = p.joinpath("patches")
+        if module.patches or module.build_file:
             patch_dir.mkdir()
             source["patches"] = []
+            source["patch_args"] = module.patch_args
+
+        if module.patches:
             for s in module.patches:
                 patch = Path(s)
                 source["patches"].append(patch.name)
                 shutil.copy(patch, patch_dir)
-        source_json = p.joinpath("source.json")
-        with source_json.open("w") as f:
+
+        # Turn build file into a patch
+        if module.build_file:
+            build_file_content = Path(module.build_file).open().readlines()
+            build_file = "a/BUILD" if "-p1" in module.patch_args else "BUILD"
+            patch_content = difflib.unified_diff([], build_file_content, "/dev/null", build_file)
+            patch_name = "add_build_file.patch"
+            source["patches"].append(patch_name)
+            with patch_dir.joinpath(patch_name).open("w") as f:
+                f.writelines(patch_content)
+
+        with p.joinpath("source.json").open("w") as f:
             json.dump(source, f, indent=4, sort_keys=True)
-        
+
         # Create presubmit.yml file
         presubmit_yml = p.joinpath("presubmit.yml")
         if module.presubmit_yml:
             shutil.copy(module.presubmit_yml, presubmit_yml)
         else:
             platforms = {
-              "linux": {},
-              "macos": {},
-              "windows": {},
+                "linux": {},
+                "macos": {},
+                "windows": {},
             }
             for key in platforms:
                 if module.build_targets:
                     platforms[key]["build_targets"] = module.build_targets.copy()
                 if module.test_targets:
-                    platforms[key]["test_targets"] = module.test_targets.copy()           
+                    platforms[key]["test_targets"] = module.test_targets.copy()
             with presubmit_yml.open("w") as f:
                 yaml.dump({"platforms": platforms}, f)
-            
+
         # Add new version to metadata.json
-        metadata_path = self.root.joinpath("modules", module.name, 
-                                           "metadata.json")    
+        metadata_path = self.root.joinpath("modules", module.name,
+                                           "metadata.json")
         metadata = json.load(metadata_path.open())
         metadata["versions"].append(module.version)
         metadata["versions"].sort()
         with metadata_path.open("w") as f:
             json.dump(metadata, f, indent=4, sort_keys=True)
-    
+
     def delete(self, module_name, version):
         """
         Delete an existing module version
@@ -225,4 +250,3 @@ module(
         metadata["versions"].remove(version)
         with metadata_path.open("w") as f:
             json.dump(metadata, f, indent=4, sort_keys=True)
-    
