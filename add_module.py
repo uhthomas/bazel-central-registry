@@ -90,10 +90,12 @@ def fromUserInput():
             first = False
             build_targets = input("Please enter a list of build targets for this module, separated by `,`: ")
             for target in build_targets.strip().split(","):
-                module.add_build_target(target)
+                if target:
+                    module.add_build_target(target)
             test_targets = input("Please enter a list of test targets for this module, separated by `,`: ")
             for target in test_targets.strip().split(","):
-                module.add_test_targets(target)
+                if target:
+                    module.add_test_targets(target)
     return module
         
 def get_maintainers_from_input():
