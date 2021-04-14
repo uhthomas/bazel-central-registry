@@ -138,7 +138,7 @@ def main(argv=None):
 
     client = RegistryClient(".")
     
-    if not client.contains(module.name, module.version):
+    if not client.contains(module.name):
         log(f"{module.name} is a new Bazel module...")
         homepage = input("Please enter the homepage url for this module: ").strip()
         maintainers = get_maintainers_from_input()
