@@ -1,0 +1,13 @@
+{
+    "homepage": "https://github.com/bazelbuild/rules_proto",
+    "maintainers": [
+        {
+            "email": "bazel-dev@googlegroups.com",
+            "name": "The Bazel Team"
+        }
+    ],
+    "versions": [
+        "0.0.1-pre"
+    ],
+    "yanked_versions": {}
+}

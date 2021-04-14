@@ -1,8 +1,17 @@
 bazel_skylib
+bazel_toolchains
+build_bazel_rules_nodejs
 com_github_cares_cares
 com_github_grpc_grpc
 com_google_absl
 com_google_protobuf
+io_bazel_rules_sass
+io_bazel_skydoc
 platforms
+rules_cc
+rules_java
+rules_pkg
+rules_proto
+rules_python
 upb
 zlib

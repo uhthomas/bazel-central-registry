@@ -1,0 +1,13 @@
+{
+    "homepage": "https://github.com/bazelbuild/rules_sass",
+    "maintainers": [
+        {
+            "email": "bazel-dev@googlegroups.com",
+            "name": "The Bazel Team"
+        }
+    ],
+    "versions": [
+        "1.25.0"
+    ],
+    "yanked_versions": {}
+}

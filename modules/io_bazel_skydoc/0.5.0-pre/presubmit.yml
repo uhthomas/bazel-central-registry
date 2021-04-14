@@ -1,0 +1,16 @@
+platforms:
+  linux:
+    build_targets:
+    - '...'
+    test_targets:
+    - ''
+  macos:
+    build_targets:
+    - '...'
+    test_targets:
+    - ''
+  windows:
+    build_targets:
+    - '...'
+    test_targets:
+    - ''

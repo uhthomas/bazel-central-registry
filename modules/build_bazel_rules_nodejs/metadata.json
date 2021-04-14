@@ -1,0 +1,13 @@
+{
+    "homepage": "https://github.com/bazelbuild/rules_nodejs",
+    "maintainers": [
+        {
+            "email": "bazel-dev@googlegroups.com",
+            "name": "The Bazel Team"
+        }
+    ],
+    "versions": [
+        "2.2.2"
+    ],
+    "yanked_versions": {}
+}

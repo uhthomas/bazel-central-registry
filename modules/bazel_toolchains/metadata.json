@@ -1,0 +1,13 @@
+{
+    "homepage": "https://github.com/bazelbuild/bazel-toolchains",
+    "maintainers": [
+        {
+            "email": "bazel-dev@googlegroups.com",
+            "name": "The Bazel Team"
+        }
+    ],
+    "versions": [
+        "4.0.0-pre"
+    ],
+    "yanked_versions": {}
+}

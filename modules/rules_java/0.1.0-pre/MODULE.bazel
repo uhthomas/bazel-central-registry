@@ -1,0 +1,6 @@
+module(
+    name = "rules_java",
+    version = "0.1.0-pre",
+    compatibility_level = "1",
+)
+

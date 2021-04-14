@@ -1,0 +1,13 @@
+{
+    "homepage": "https://github.com/bazelbuild/stardoc",
+    "maintainers": [
+        {
+            "email": "bazel-dev@googlegroups.com",
+            "name": "The Bazel Team"
+        }
+    ],
+    "versions": [
+        "0.5.0-pre"
+    ],
+    "yanked_versions": {}
+}
