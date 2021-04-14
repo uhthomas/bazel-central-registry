@@ -2,15 +2,9 @@ platforms:
   linux:
     build_targets:
     - //:upb
-    test_targets:
-    - ''
   macos:
     build_targets:
     - //:upb
-    test_targets:
-    - ''
   windows:
     build_targets:
     - //:upb
-    test_targets:
-    - ''
