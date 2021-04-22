@@ -1,8 +1,6 @@
 {
     "integrity": "sha256-58eaee5c0f1bd0b92ebe1fa0606ec8f14798500620e7444726afcaf65041cb63",
-    "patch_args": [
-        "-p1"
-    ],
+    "patch_strip": 1,
     "patches": [
         "grpc_1.33.1.patch"
     ],
