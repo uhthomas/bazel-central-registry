@@ -29,7 +29,7 @@ class Module(object):
         self.module_dot_bazel = None
         self.deps = []
         self.patches = []
-        self.patch_args = []
+        self.patch_strip = 0
         self.build_file = None
         self.presubmit_yml = None
         self.build_targets = []
@@ -52,8 +52,8 @@ class Module(object):
         self.patches.append(patch_file)
         return self
 
-    def set_patch_args(self, patch_args):
-        self.patch_args = patch_args
+    def set_patch_strip(self, patch_strip):
+        self.patch_strip = patch_strip
         return self
 
     def set_build_file(self, build_file):
@@ -104,7 +104,7 @@ module(
 
     def contains(self, module_name, version=None):
         """
-        Check if the registry contains a module or a specific version of a 
+        Check if the registry contains a module or a specific version of a
         module
         """
         p = self.root.joinpath("modules", module_name)
@@ -155,7 +155,7 @@ module(
         Parameters
         ----------
         module_name : Module
-            A Module instance containing information of the module version to 
+            A Module instance containing information of the module version to
             be added
         """
         if self.contains(module.name, module.version):
@@ -190,7 +190,7 @@ module(
         if module.patches or module.build_file:
             patch_dir.mkdir()
             source["patches"] = []
-            source["patch_args"] = module.patch_args
+            source["patch_strip"] = module.patch_strip
 
         if module.patches:
             for s in module.patches:
@@ -201,7 +201,7 @@ module(
         # Turn build file into a patch
         if module.build_file:
             build_file_content = Path(module.build_file).open().readlines()
-            build_file = "a/BUILD.bazel" if "-p1" in module.patch_args else "BUILD.bazel"
+            build_file = "a/" * module.patch_strip + "BUILD.bazel"
             patch_content = difflib.unified_diff([], build_file_content, "/dev/null", build_file)
             patch_name = "add_build_file.patch"
             source["patches"].append(patch_name)

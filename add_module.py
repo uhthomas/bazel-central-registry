@@ -33,7 +33,7 @@ def yes_or_no(question, default):
         question += " [Y/n]: "
     else:
         question += " [y/N]: "
-        
+
     var = None
     while var is None:
         user_input = input(question).strip().lower()
@@ -52,7 +52,7 @@ def fromUserInput():
     version = input("Please enter the module version: ")
     compatibility = input("Please enter the compatibility level [default is 1]: ") or "1"
     module = Module(name, version, compatibility)
-    
+
     url = input("Please enter the URL of the source archive: ")
     integrity = input("Please enter the integrity value of the archive: ")
     strip_prefix = input("Please enter the strip_prefix value of the archive [default None]: ") or None
@@ -62,8 +62,8 @@ def fromUserInput():
         patches = input("Please enter patch file paths, separated by `,`: ")
         for patch in patches.strip().split(","):
             module.add_patch(patch.strip())
-        patch_args = input("Please enter arguments for the patch command, separated by `,` [Default -p1]: ") or "-p1"
-        module.set_patch_args(patch_args.strip().split(","))
+        patch_strip = input("Please enter the patch strip number [Default is 1, compatible with git generated patches]: ") or 1
+        module.set_patch_strip(patch_strip.strip().split(","))
 
     if yes_or_no("Do you want to add a BUILD file?", False):
         build_file = input("Please enter the path of the BUILD file to be added: ")
@@ -97,7 +97,7 @@ def fromUserInput():
                 if target:
                     module.add_test_targets(target)
     return module
-        
+
 def get_maintainers_from_input():
     maintainers = []
     while True:
@@ -113,7 +113,7 @@ def get_maintainers_from_input():
         if not yes_or_no("Do you want to add another maintainer?", False):
             break
     return maintainers
-         
+
 
 def main(argv=None):
     if argv is None:
@@ -137,16 +137,16 @@ def main(argv=None):
         module.dump(f"{module.name}.{timestamp}.json")
 
     client = RegistryClient(".")
-    
+
     if not client.contains(module.name):
         log(f"{module.name} is a new Bazel module...")
         homepage = input("Please enter the homepage url for this module: ").strip()
         maintainers = get_maintainers_from_input()
         client.init_module(module.name, maintainers, homepage)
-    
+
     client.add(module)
     log(f"{module.name} {module.version} is added into the registry.")
-    
+
 
 if __name__ == "__main__":
     sys.exit(main())
