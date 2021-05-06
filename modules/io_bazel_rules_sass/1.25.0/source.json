@@ -1,5 +1,5 @@
 {
-    "integrity": "sha256-c78be58f5e0a29a04686b628cf54faaee0094322ae0ac99da5a8a8afca59a647",
+    "integrity": "sha256-x4vlj14KKaBGhrYoz1T6ruAJQyKuCsmdpaior8pZpkc=",
     "strip_prefix": "rules_sass-1.25.0",
     "url": "https://github.com/bazelbuild/rules_sass/archive/1.25.0.zip"
 }

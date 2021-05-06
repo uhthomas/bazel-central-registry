@@ -1,5 +1,5 @@
 {
-    "integrity": "sha256-7992217989f3156f8109931c1fc6db3434b7414957cb82371552377beaeb9d6c",
+    "integrity": "sha256-eZIheYnzFW+BCZMcH8bbNDS3QUlXy4I3FVI3e+rrnWw=",
     "strip_prefix": "upb-382d5afc60e05470c23e8de19b19fc5ad231e732",
     "url": "https://github.com/protocolbuffers/upb/archive/382d5afc60e05470c23e8de19b19fc5ad231e732.tar.gz"
 }

@@ -1,5 +1,5 @@
 {
-    "integrity": "sha256-5a725b777976b77aa122b707d1b6f0f39b6020f66cd427bb111a585599c857b1",
+    "integrity": "sha256-WnJbd3l2t3qhIrcH0bbw85tgIPZs1Ce7ERpYVZnIV7E=",
     "strip_prefix": "stardoc-1ef781ced3b1443dca3ed05dec1989eca1a4e1cd",
     "url": "https://github.com/bazelbuild/stardoc/archive/1ef781ced3b1443dca3ed05dec1989eca1a4e1cd.tar.gz"
 }

@@ -1,9 +1,9 @@
 {
-    "integrity": "sha256-58eaee5c0f1bd0b92ebe1fa0606ec8f14798500620e7444726afcaf65041cb63",
+    "integrity": "sha256-WOruXA8b0Lkuvh+gYG7I8UeYUAYg50RHJq/K9lBBy2M=",
     "patch_strip": 1,
-    "patches": [
-        "grpc_1.33.1.patch"
-    ],
+    "patches": {
+        "grpc_1.33.1.patch": "sha256-wQEPwDb08aP1b88qXP8dBEU+WzcG6lKYQo85exZppBw="
+    },
     "strip_prefix": "grpc-1.33.1",
     "url": "https://github.com/grpc/grpc/archive/v1.33.1.tar.gz"
 }
