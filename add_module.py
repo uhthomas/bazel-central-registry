@@ -148,7 +148,7 @@ def main(argv=None):
         maintainers = get_maintainers_from_input()
         client.init_module(module.name, maintainers, homepage)
 
-    client.add(module)
+    client.add(module, override=True)
     log(f"{module.name} {module.version} is added into the registry.")
 
 

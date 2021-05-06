@@ -166,19 +166,23 @@ module(
         modules.sort()
         module_list.open("w").writelines(modules)
 
-    def add(self, module):
+    def add(self, module, override=False):
         """
         Add a new module version, the module must be already initialized
 
         Parameters
         ----------
-        module_name : Module
+        module : Module
             A Module instance containing information of the module version to
             be added
+        override : Whether to override existing module
         """
         if self.contains(module.name, module.version):
-            raise RegistryModifyException(
-                f"Version {module.version} for module {module.name} already exists.")
+            if override:
+                self.delete(module.name, module.version)
+            else:
+                raise RegistryModifyException(
+                    f"Version {module.version} for module {module.name} already exists.")
 
         p = self.root.joinpath("modules", module.name, module.version)
         p.mkdir()
@@ -253,6 +257,7 @@ module(
                                            "metadata.json")
         metadata = json.load(metadata_path.open())
         metadata["versions"].append(module.version)
+        metadata["versions"] = list(set(metadata["versions"]))
         metadata["versions"].sort()
         with metadata_path.open("w") as f:
             json.dump(metadata, f, indent=4, sort_keys=True)
