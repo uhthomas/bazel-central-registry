@@ -25,8 +25,10 @@ import time
 def log(msg):
     print(f"{Fore.GREEN}INFO: {Style.RESET_ALL}{msg}")
 
+
 def log_warning(msg):
     print(f"{Fore.YELLOW}INFO: {Style.RESET_ALL}{msg}")
+
 
 def yes_or_no(question, default):
     if default:
@@ -47,22 +49,23 @@ def yes_or_no(question, default):
           print("Invalid selection: {}".format(user_input))
     return var
 
-def fromUserInput():
+
+def from_user_input():
     name = input("Please enter the module name: ")
     version = input("Please enter the module version: ")
     compatibility = input("Please enter the compatibility level [default is 1]: ") or "1"
     module = Module(name, version, compatibility)
 
     url = input("Please enter the URL of the source archive: ")
-    integrity = input("Please enter the integrity value of the archive: ")
     strip_prefix = input("Please enter the strip_prefix value of the archive [default None]: ") or None
-    module.set_source(url, integrity, strip_prefix)
+    module.set_source(url, strip_prefix)
 
     if yes_or_no("Do you want to add patch files?", False):
         patches = input("Please enter patch file paths, separated by `,`: ")
         for patch in patches.strip().split(","):
             module.add_patch(patch.strip())
-        patch_strip = input("Please enter the patch strip number [Default is 1, compatible with git generated patches]: ") or 1
+        patch_strip = input("Please enter the patch strip number [Default is 1, compatible with git generated "
+                            "patches]: ") or 1
         module.set_patch_strip(patch_strip.strip().split(","))
 
     if yes_or_no("Do you want to add a BUILD file?", False):
@@ -98,6 +101,7 @@ def fromUserInput():
                     module.add_test_targets(target)
     return module
 
+
 def get_maintainers_from_input():
     maintainers = []
     while True:
@@ -130,7 +134,7 @@ def main(argv=None):
         module.from_json(args.input)
     else:
         log("Getting module information from user input...")
-        module = fromUserInput()
+        module = from_user_input()
         timestamp = time.strftime("%Y%m%d-%H%M%S")
         log(f"Saving module information to {module.name}.{timestamp}.json")
         log(f"You can use it via --input={module.name}.{timestamp}.json")

@@ -15,10 +15,29 @@
 # limitations under the License.
 
 from pathlib import Path
+import base64
 import difflib
+import hashlib
 import json
 import shutil
+import urllib.request
 import yaml
+
+
+def download(url):
+    response = urllib.request.urlopen(url)
+    return response.read()
+
+
+def read(path):
+    f = open(path, "rb")
+    return f.read()
+
+
+def integrity(data):
+    hash_value = hashlib.sha256(data)
+    return "sha256-" + base64.b64encode(hash_value.digest()).decode()
+
 
 class Module(object):
 
@@ -42,9 +61,8 @@ class Module(object):
     def set_module_dot_bazel(self, module_dot_bazel):
         self.module_dot_bazel = module_dot_bazel
 
-    def set_source(self, url, integrity, strip_prefix=None):
+    def set_source(self, url, strip_prefix=None):
         self.url = url
-        self.integrity = integrity
         self.strip_prefix = strip_prefix
         return self
 
@@ -181,7 +199,7 @@ module(
         # Create source.json & place patch files
         source = {
             "url": module.url,
-            "integrity": module.integrity,
+            "integrity": integrity(download(module.url)),
         }
         if module.strip_prefix:
             source["strip_prefix"] = module.strip_prefix
@@ -189,13 +207,13 @@ module(
         patch_dir = p.joinpath("patches")
         if module.patches or module.build_file:
             patch_dir.mkdir()
-            source["patches"] = []
+            source["patches"] = {}
             source["patch_strip"] = module.patch_strip
 
         if module.patches:
             for s in module.patches:
                 patch = Path(s)
-                source["patches"].append(patch.name)
+                source["patches"][patch.name] = integrity(read(patch))
                 shutil.copy(patch, patch_dir)
 
         # Turn build file into a patch
@@ -204,9 +222,10 @@ module(
             build_file = "a/" * module.patch_strip + "BUILD.bazel"
             patch_content = difflib.unified_diff([], build_file_content, "/dev/null", build_file)
             patch_name = "add_build_file.patch"
-            source["patches"].append(patch_name)
-            with patch_dir.joinpath(patch_name).open("w") as f:
+            patch = patch_dir.joinpath(patch_name)
+            with patch.open("w") as f:
                 f.writelines(patch_content)
+            source["patches"][patch_name] = integrity(read(patch))
 
         with p.joinpath("source.json").open("w") as f:
             json.dump(source, f, indent=4, sort_keys=True)
