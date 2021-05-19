@@ -66,7 +66,7 @@ def from_user_input():
             module.add_patch(patch.strip())
         patch_strip = input("Please enter the patch strip number [Default is 1, compatible with git generated "
                             "patches]: ") or 1
-        module.set_patch_strip(patch_strip.strip().split(","))
+        module.set_patch_strip(int(patch_strip.strip()))
 
     if yes_or_no("Do you want to add a BUILD file?", False):
         build_file = input("Please enter the path of the BUILD file to be added: ")
