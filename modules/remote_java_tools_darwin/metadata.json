@@ -1,0 +1,13 @@
+{
+    "homepage": "https://github.com/bazelbuild/java_tools",
+    "maintainers": [
+        {
+            "email": "bazel-dev@googlegroups.com",
+            "name": "The Bazel Team"
+        }
+    ],
+    "versions": [
+        "11.3"
+    ],
+    "yanked_versions": {}
+}

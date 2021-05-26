@@ -1,0 +1,13 @@
+{
+    "homepage": "https://openjdk.java.net/",
+    "maintainers": [
+        {
+            "email": "bazel-dev@googlegroups.com",
+            "name": "The Bazel Team"
+        }
+    ],
+    "versions": [
+        "11.0.6"
+    ],
+    "yanked_versions": {}
+}

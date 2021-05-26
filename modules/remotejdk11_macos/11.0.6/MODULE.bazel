@@ -1,0 +1,6 @@
+module(
+    name = "remotejdk11_macos",
+    version = "11.0.6",
+    compatibility_level = "1",
+)
+

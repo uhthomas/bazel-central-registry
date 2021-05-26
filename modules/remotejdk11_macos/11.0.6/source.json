@@ -1,0 +1,9 @@
+{
+    "integrity": "sha256-4f5Wdp8y4qqsleCo+GtaMj2lrzo7S7pz8whjkabMBW8=",
+    "patch_strip": 0,
+    "patches": {
+        "add_build_file.patch": "sha256-ziiHqXkOmpMrrW8lBrhvDZq4K8fFdyX4BYm/3yiwT/w="
+    },
+    "strip_prefix": "zulu11.37.17-ca-jdk11.0.6-macosx_x64",
+    "url": "https://mirror.bazel.build/openjdk/azul-zulu11.37.17-ca-jdk11.0.6/zulu11.37.17-ca-jdk11.0.6-macosx_x64.tar.gz"
+}

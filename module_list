@@ -8,6 +8,9 @@ com_google_protobuf
 io_bazel_rules_sass
 io_bazel_skydoc
 platforms
+remote_java_tools
+remote_java_tools_darwin
+remotejdk11_macos
 rules_cc
 rules_java
 rules_pkg
