@@ -1,6 +1,6 @@
 module(
     name = "com_google_absl",
     version = "20200225-pre",
-    compatibility_level = "1",
+    compatibility_level = 1,
 )
 

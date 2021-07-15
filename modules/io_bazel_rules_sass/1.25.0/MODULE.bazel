@@ -1,6 +1,6 @@
 module(
     name = "io_bazel_rules_sass",
     version = "1.25.0",
-    compatibility_level = "1",
+    compatibility_level = 1,
 )
 

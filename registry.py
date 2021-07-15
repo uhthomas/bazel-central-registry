@@ -111,7 +111,7 @@ class RegistryClient(object):
 module(
     name = "{0}",
     version = "{1}",
-    compatibility_level = "{2}",
+    compatibility_level = {2},
 )
 
 {3}
