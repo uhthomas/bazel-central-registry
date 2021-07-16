@@ -5,6 +5,6 @@ set -e
 BUCKET_NAME=bcr.bazel.build
 gsutil cp ./bazel_registry.json gs://${BUCKET_NAME}/
 gsutil cp ./module_list gs://${BUCKET_NAME}/
-gsutil -m rsync -d -r ./modules gs://${BUCKET_NAME}/modules
+gsutil -h "Cache-Control:no-cache" -m rsync -d -r ./modules gs://${BUCKET_NAME}/modules
 
 
