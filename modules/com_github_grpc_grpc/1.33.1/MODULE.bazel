@@ -7,3 +7,4 @@ module(
 bazel_dep(name = "com_github_cares_cares", version = "1.15.0-pre")
 bazel_dep(name = "com_google_absl", version = "20200225-pre")
 bazel_dep(name = "upb", version = "0.0.1-pre")
+bazel_dep(name = "rules_proto", version = "0.0.1-pre")
