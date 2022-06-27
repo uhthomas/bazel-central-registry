@@ -1,0 +1,5 @@
+module(
+    name = "googleapis_go_genproto",
+    version = "0.0.0-20220602131408-e326c6e8e9c8",
+    compatibility_level = 1,
+)

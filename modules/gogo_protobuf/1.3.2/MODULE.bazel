@@ -1,0 +1,5 @@
+module(
+    name = "gogo_protobuf",
+    version = "1.3.2",
+    compatibility_level = 1,
+)

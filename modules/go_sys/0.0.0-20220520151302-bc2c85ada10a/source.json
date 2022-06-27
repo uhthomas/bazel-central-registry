@@ -1,0 +1,9 @@
+{
+    "integrity": "sha256-SE5YofbbGshkiQqQTa7vug0Spo2iq2LeDnvKunmjNdQ=",
+    "patch_strip": 1,
+    "patches": {
+        "gazelle.patch": "sha256-H/aCPv8vTcaCui5RQHOQRXDO2M/3PRgg+pC9Kbfx+5o="
+    },
+    "strip_prefix": "sys-bc2c85ada10aa9b6aa9607e9ac9ad0761b95cf1d",
+    "url": "https://github.com/golang/sys/archive/bc2c85ada10aa9b6aa9607e9ac9ad0761b95cf1d.tar.gz"
+}

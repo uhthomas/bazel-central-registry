@@ -1,0 +1,10 @@
+{
+    "integrity": "sha256-IepO45ca4AwNHpqei2WK5jjdcpKpdNrX2hXx+olnyLw=",
+    "patch_strip": 1,
+    "patches": {
+        "deletegopls.patch": "sha256-4NEpsEMd2Ntud+QCHJB5ccqC1m6Ss37VPyJUTCywuuw=",
+        "gazelle.patch": "sha256-A0hJ/WWiVi5C0MYIYbcxN1I6EKS0wNclV5NSIwpir6M="
+    },
+    "strip_prefix": "tools-0.1.9",
+    "url": "https://github.com/golang/tools/archive/v0.1.9.tar.gz"
+}

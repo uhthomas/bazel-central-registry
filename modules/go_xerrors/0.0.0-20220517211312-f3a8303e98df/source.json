@@ -1,0 +1,9 @@
+{
+    "integrity": "sha256-f8J6zlvvEpM8LZ2Xkix61M354be4Sr8qNgIwCmVcLZg=",
+    "patch_strip": 1,
+    "patches": {
+        "gazelle.patch": "sha256-V6zWesI16IzUfVlOAerpJEYB7PxyWEeRjUi9m7xSjX4="
+    },
+    "strip_prefix": "xerrors-f3a8303e98df87cf4205e70f82c1c3c19f345f91",
+    "url": "https://github.com/golang/xerrors/archive/f3a8303e98df87cf4205e70f82c1c3c19f345f91.tar.gz"
+}

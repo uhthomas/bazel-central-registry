@@ -1,0 +1,5 @@
+module(
+    name = "go_proto_validators",
+    version = "0.3.2",
+    compatibility_level = 1,
+)

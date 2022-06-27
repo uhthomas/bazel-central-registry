@@ -1,0 +1,5 @@
+module(
+    name = "protobuf_go",
+    version = "1.28.0",
+    compatibility_level = 1,
+)

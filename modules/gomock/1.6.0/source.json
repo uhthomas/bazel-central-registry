@@ -1,0 +1,9 @@
+{
+    "integrity": "sha256-RwF0lxw6YzYRSaMPWy06cWoZiv62zHHaowcS+qcpOUI=",
+    "patch_strip": 1,
+    "patches": {
+        "gazelle.patch": "sha256-DemN7JbbexVKwSIjdwah/aLQritSze+YFlXuasI+cmM="
+    },
+    "strip_prefix": "mock-1.6.0",
+    "url": "https://github.com/golang/mock/archive/refs/tags/v1.6.0.tar.gz"
+}

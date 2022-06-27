@@ -1,0 +1,8 @@
+{
+    "integrity": "sha256-aFBStJi23f5WLKepdzZ0HYeRb+U2Yjr7faKCTAIRw2k=",
+    "patch_strip": 1,
+    "patches": {
+        "repo_names.patch": "sha256-5OgjcmxaXMArDfYx4XF/DbiRJk+OrHJJ0P6mdJgE/iI="
+    },
+    "url": "https://github.com/bazelbuild/rules_go/releases/download/v0.33.0/rules_go-v0.33.0.zip"
+}

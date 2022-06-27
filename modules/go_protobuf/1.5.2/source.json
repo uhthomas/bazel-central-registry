@@ -1,0 +1,9 @@
+{
+    "integrity": "sha256-CIzA87oY+4+dADGVaP8K9aBtiSWm5suYO7g3tO+3A7M=",
+    "patch_strip": 1,
+    "patches": {
+        "gazelle.patch": "sha256-Qjbmw8UcQ3IKj7pd4jsj6YSRLK687yDjwu2j6nWN9Cs="
+    },
+    "strip_prefix": "protobuf-1.5.2",
+    "url": "https://github.com/golang/protobuf/archive/refs/tags/v1.5.2.tar.gz"
+}

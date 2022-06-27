@@ -1,0 +1,11 @@
+{
+    "integrity": "sha256-482R3jJvhLyKLf6uzUzspeBbPhfEakAgR6Cceqcxv4I=",
+    "patch_strip": 1,
+    "patches": {
+        "deletebuild.patch": "sha256-Ba8jJqN8T7kVdJ8uNPBTj7VQc9rjBoNJcwMbh7rjuxA=",
+        "directives.patch": "sha256-rgkCl9dBBGg10wseMdJFiyqPTZcpwqbKPwhGClNH/vM=",
+        "gazelle.patch": "sha256-0lT6+PhhF/Ma9FK8kYNHFFaYRwBUQm3glV4FoJby/ME="
+    },
+    "strip_prefix": "googleapis-530ca55953b470ab3b37dc9de37fcfa59410b741",
+    "url": "https://github.com/googleapis/googleapis/archive/530ca55953b470ab3b37dc9de37fcfa59410b741.tar.gz"
+}

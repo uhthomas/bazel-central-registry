@@ -1,0 +1,5 @@
+module(
+    name = "go_googleapis",
+    version = "0.0.0-20220603060807-530ca5",
+    compatibility_level = 1,
+)

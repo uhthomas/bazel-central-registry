@@ -1,0 +1,9 @@
+{
+    "integrity": "sha256-9AGGdZ3eeUg/CNzbQhlRfVnBq4yBic6ukMBW+MUqAZ8=",
+    "patch_strip": 1,
+    "patches": {
+        "gazelle.patch": "sha256-U8Huj6+lEzGu1mHb5LlVq0cyUbHiTqkDxdu41THoeEI="
+    },
+    "strip_prefix": "go-genproto-e326c6e8e9c8d23afed6c564e1c6c7e7693d58d0",
+    "url": "https://github.com/googleapis/go-genproto/archive/e326c6e8e9c8d23afed6c564e1c6c7e7693d58d0.tar.gz"
+}
